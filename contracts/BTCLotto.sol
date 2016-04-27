@@ -1,24 +1,22 @@
 contract BTCRelay{
   function getBlockHash(uint) returns(uint);
+  function getLastBlockHeight() returns(uint);
 }
 
 contract BTCLotto {
-  BTCRelay relay;
+  BTCRelay relay = BTCRelay(0x23d0ff718861979e08db52627941eb0f1f3783b9);
   address owner;
   mapping(bytes32 => bool) tickets;
-  uint ticketPrice;
+  uint constant ticketPrice = 2 finney;
   enum Phase {Buy, Roll, Claim}
   Phase lottoPhase = Phase.Buy;
   uint[7]  rewards = [0,1,5,500,6000,14000,19000];
   uint[6] public winningNumbers;
-  uint firstRoll;
+  uint public firstRoll;
 
 
-  function BTCLotto(address _relay, uint price){ //with default prizes, tickets are .2 ETH
-    relay = BTCRelay(_relay);
-    owner = msg.sender;
-    ticketPrice = price;
-    firstRoll = block.number + 5760; // One day from now
+  function BTCLotto(){ //with default prizes, tickets are .2 ETH
+    firstRoll = relay.getLastBlockHeight() + 1;  // One day from now
   }
 
 /*
@@ -29,7 +27,7 @@ contract BTCLotto {
   */
 
   function buyTicket(bytes32 hash) public {
-    if(block.number >= firstRoll) lottoPhase = Phase.Roll;
+    if(relay.getLastBlockHeight() >= firstRoll) lottoPhase = Phase.Roll;
     if(msg.value < ticketPrice || lottoPhase != Phase.Buy) throw;
     tickets[hash] = true;
     msg.sender.send(msg.value-ticketPrice);
