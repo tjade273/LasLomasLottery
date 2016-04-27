@@ -4,3 +4,32 @@ html {
 body{
   background-image: linear-gradient(45deg, rgb(98,0,0),rgb(40,0,0));
 }
+.panel-default {
+  background-image: linear-gradient(60deg, silver, gold, silver ,gold);
+}
+.panel-body {
+  background-color: transparent;
+  align-items: center;
+}
+.circle1 {
+    width: 100px;
+    height: 100px;
+    background: yellow;
+    border: 3px solid red;
+}
+
+.circleBase {
+    border-radius: 50%;
+    behavior: url(PIE.htc); /* remove if you don't care about IE8 */
+    text-align: center;
+}
+
+.ball {
+  height: 140px;
+  width:140px;
+}
+
+span {
+  display: inline-block;
+  vertical-align: middle;
+}

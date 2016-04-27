@@ -1,0 +1,30 @@
+{
+  "name": "btclotto",
+  "version": "0.0.1",
+  "description": "Las Lomas BTC Lottery",
+  "main": "truffle.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "web3": "^0.15.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "truffle test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tjade273/LasLomasLottery.git"
+  },
+  "keywords": [
+    "Bitcoin",
+    "Lottery"
+  ],
+  "author": "Tjaden Hess",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tjade273/LasLomasLottery/issues"
+  },
+  "homepage": "https://github.com/tjade273/LasLomasLottery#readme"
+}
